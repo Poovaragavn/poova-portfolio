@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Poovaragavan C — AI Engineer, Machine Learning Engineer, Data Analyst & Python Developer. Building intelligent AI solutions and data-driven products.">
+  <meta name="keywords" content="AI Engineer, Machine Learning, Data Analyst, Python Developer, Portfolio, Poovaragavan">
+  <meta name="author" content="Poovaragavan C">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Poovaragavan C — AI Engineer & ML Engineer">
+  <meta property="og:description" content="Building intelligent AI solutions, machine learning applications, and data-driven products.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Poovaragavan C — AI Engineer & Machine Learning Engineer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Supabase JS Client & Config -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    window.ENV_SUPABASE_URL = 'https://uiytlzwggkxwhhyjmotl.supabase.co'; 
+    window.ENV_SUPABASE_ANON_KEY = 'sb_publishable_paemvekmDr6KH6v4wvBm4w_ikUgowzM';
+  </script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Global Scrolling Motion Canvas Background -->
+  <canvas id="global-bg-canvas" class="global-bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Loading Screen -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+      <span class="loader-text">PC</span>
+    </div>
+    <p class="loader-tagline">Building the future with AI</p>
+  </div>
+
+  <!-- Cursor Glow -->
+  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+  <div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" aria-label="Home">
+        <span class="logo-bracket">&lt;</span>PC<span class="logo-bracket">/&gt;</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#about" class="nav-link" data-nav>About</a>
+        <a href="#skills" class="nav-link" data-nav>Skills</a>
+        <a href="#experience" class="nav-link" data-nav>Experience</a>
+        <a href="#projects" class="nav-link" data-nav>Projects</a>
+        <a href="#certifications" class="nav-link" data-nav>Certifications</a>
+        <a href="#education" class="nav-link" data-nav>Education</a>
+        <a href="#contact" class="nav-link" data-nav>Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <i data-lucide="moon" class="theme-icon-dark"></i>
+          <i data-lucide="sun" class="theme-icon-light"></i>
+        </button>
+        <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Overlay -->
+  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-links">
+      <a href="#about" class="mobile-nav-link" data-mobile-nav>About</a>
+      <a href="#skills" class="mobile-nav-link" data-mobile-nav>Skills</a>
+      <a href="#experience" class="mobile-nav-link" data-mobile-nav>Experience</a>
+      <a href="#projects" class="mobile-nav-link" data-mobile-nav>Projects</a>
+      <a href="#certifications" class="mobile-nav-link" data-mobile-nav>Certifications</a>
+      <a href="#education" class="mobile-nav-link" data-mobile-nav>Education</a>
+      <a href="#contact" class="mobile-nav-link" data-mobile-nav>Contact</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="aurora aurora-3"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="mesh-grid" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero-container">
+        <!-- Left Side -->
+        <div class="hero-content" data-animate="fade-right">
+          <div class="hero-badge hero-badge-gold">
+            <i data-lucide="trophy" class="badge-icon-gold"></i>
+            <span>Best Outgoing Student — CSE Department</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="hero-greeting">Hello, I'm</span>
+            <span class="hero-name">POOVARAGAVAN <span class="name-accent">C</span></span>
+            <span class="hero-role">
+              <span id="typed-role" class="typed-text"></span>
+              <span class="typed-cursor">|</span>
+            </span>
+          </h1>
+
+          <p class="hero-description">
+            Awarded <strong>Best Outgoing Student for the CSE Department</strong>. I build intelligent AI solutions, machine learning applications, automation systems, and data-driven products that solve real-world business challenges.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary magnetic-btn">
+              <i data-lucide="layers" class="btn-icon"></i>
+              <span>View Projects</span>
+              <div class="btn-glow"></div>
+            </a>
+            <a href="assets/Poovaragavan_C_Resume.pdf" download="Poovaragavan_C_Resume.pdf" target="_blank" class="btn btn-secondary magnetic-btn" id="download-resume">
+              <i data-lucide="download" class="btn-icon"></i>
+              <span>Download Resume</span>
+            </a>
+            <a href="#contact" class="btn btn-outline magnetic-btn">
+              <i data-lucide="message-circle" class="btn-icon"></i>
+              <span>Let's Talk</span>
+            </a>
+          </div>
+
+          <div class="hero-socials">
+            <a href="https://github.com/" target="_blank" rel="noopener" class="social-link magnetic-btn" aria-label="GitHub">
+              <i data-lucide="github"></i>
+            </a>
+            <a href="https://linkedin.com/" target="_blank" rel="noopener" class="social-link magnetic-btn" aria-label="LinkedIn">
+              <i data-lucide="linkedin"></i>
+            </a>
+            <a href="mailto:poovaragavan450@gmail.com" class="social-link magnetic-btn" aria-label="Email">
+              <i data-lucide="mail"></i>
+            </a>
+            <a href="https://medium.com/" target="_blank" rel="noopener" class="social-link magnetic-btn" aria-label="Medium">
+              <i data-lucide="book-open"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side - 3D Profile Visual -->
+        <div class="hero-visual" data-animate="fade-left" data-parallax>
+          <div class="visual-container" id="hero-visual-container">
+            <!-- Neural Network Canvas (behind everything) -->
+            <canvas id="neural-canvas" class="neural-canvas" aria-hidden="true"></canvas>
+
+            <!-- Central Glow -->
+            <div class="visual-glow"></div>
+
+            <!-- 3D Profile Card -->
+            <div class="profile-3d-wrapper" id="profile-3d">
+              <!-- Orbiting Rings -->
+              <div class="orbit-ring orbit-ring-1" aria-hidden="true"></div>
+              <div class="orbit-ring orbit-ring-2" aria-hidden="true"></div>
+              <div class="orbit-ring orbit-ring-3" aria-hidden="true"></div>
+
+              <!-- Profile Image Container -->
+              <div class="profile-image-container">
+                <div class="profile-border-glow"></div>
+                <div class="profile-image-inner">
+                  <img src="assets/profile.jpg" alt="Poovaragavan C — AI Engineer" class="profile-image" loading="eager">
+                </div>
+                <!-- Status Ring -->
+                <div class="profile-status-ring"></div>
+              </div>
+
+              <!-- Orbiting Tech Icons -->
+              <div class="orbit-icons">
+                <div class="orbit-icon orbit-icon-1" data-speed="1.5">
+                  <div class="orbit-icon-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  </div>
+                  <span class="orbit-icon-label">Python</span>
+                </div>
+                <div class="orbit-icon orbit-icon-2" data-speed="2">
+                  <div class="orbit-icon-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                  </div>
+                  <span class="orbit-icon-label">ML</span>
+                </div>
+                <div class="orbit-icon orbit-icon-3" data-speed="1.8">
+                  <div class="orbit-icon-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                  </div>
+                  <span class="orbit-icon-label">Power BI</span>
+                </div>
+                <div class="orbit-icon orbit-icon-4" data-speed="2.2">
+                  <div class="orbit-icon-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="19" cy="17" r="3"/></svg>
+                  </div>
+                  <span class="orbit-icon-label">SQL</span>
+                </div>
+                <div class="orbit-icon orbit-icon-5" data-speed="1.6">
+                  <div class="orbit-icon-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg>
+                  </div>
+                  <span class="orbit-icon-label">IoT</span>
+                </div>
+                <div class="orbit-icon orbit-icon-6" data-speed="2.5">
+                  <div class="orbit-icon-inner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 3 2 6h4c0-3 2-4 2-6a4 4 0 0 0-4-4zM10 18h4M11 22h2"/></svg>
+                  </div>
+                  <span class="orbit-icon-label">AI</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Particles -->
+            <div class="hero-particles" id="hero-particles"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span>Scroll to explore</span>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="section about-section">
+      <div class="section-bg">
+        <div class="gradient-orb orb-about-1"></div>
+        <div class="gradient-orb orb-about-2"></div>
+      </div>
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-tag"><i data-lucide="user" class="section-tag-icon"></i> About Me</span>
+          <h2 class="section-title">Crafting Intelligence,<br><span class="gradient-text">One Algorithm at a Time</span></h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-content" data-animate="fade-right">
+            <div class="about-text-card glass-card gold-border-card">
+              <div class="award-header-tag"><i data-lucide="trophy"></i> Department Honor</div>
+              <h3>Best Outgoing Student (CSE)</h3>
+              <p>Honored as the <strong>Best Outgoing Student for the Computer Science & Engineering Department</strong> at Adithya Institute of Technology, recognizing outstanding academic performance (CGPA 8.15/10), multi-year student leadership, technical club management, and AI/ML project achievements.</p>
+            </div>
+            <div class="about-text-card glass-card">
+              <h3>Who I Am</h3>
+              <p>I'm <strong>Poovaragavan C</strong>, a Computer Science & Engineering graduate from Adithya Institute of Technology, Coimbatore. I am an enthusiastic AI Engineer and Machine Learning practitioner with solid skills in Python, SQL, Pandas, NumPy, and IoT systems.</p>
+              <p>I have completed hands-on internships at <strong>Pantech eLearning</strong> (Machine Learning) and <strong>OXI.AI</strong> (Data Analyst), building data-driven solutions and predictive models that solve real-world problems.</p>
+            </div>
+            <div class="about-text-card glass-card">
+              <h3>My Vision</h3>
+              <p>To leverage analytical thinking, machine learning algorithms, and intelligent automation (N8N, OpenAI APIs, Power BI) to contribute to cutting-edge AI products and cloud-driven data engineering solutions.</p>
+            </div>
+          </div>
+
+          <div class="about-stats" data-animate="fade-left">
+            <div class="stat-card glass-card" data-animate="scale">
+              <div class="stat-icon"><i data-lucide="code-2"></i></div>
+              <div class="stat-number" data-count="5">0</div>
+              <div class="stat-suffix">+</div>
+              <div class="stat-label">Projects Built</div>
+            </div>
+            <div class="stat-card glass-card" data-animate="scale">
+              <div class="stat-icon"><i data-lucide="award"></i></div>
+              <div class="stat-number" data-count="8">0</div>
+              <div class="stat-suffix">+</div>
+              <div class="stat-label">Certifications</div>
+            </div>
+            <div class="stat-card glass-card" data-animate="scale">
+              <div class="stat-icon"><i data-lucide="briefcase"></i></div>
+              <div class="stat-number" data-count="4">0</div>
+              <div class="stat-suffix">+</div>
+              <div class="stat-label">Internships</div>
+            </div>
+            <div class="stat-card glass-card" data-animate="scale">
+              <div class="stat-icon"><i data-lucide="crown"></i></div>
+              <div class="stat-number" data-count="7">0</div>
+              <div class="stat-suffix">+</div>
+              <div class="stat-label">Leadership Roles</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Passion Tags -->
+        <div class="passion-tags" data-animate="fade-up">
+          <span class="passion-tag">Artificial Intelligence</span>
+          <span class="passion-tag">Machine Learning</span>
+          <span class="passion-tag">Deep Learning</span>
+          <span class="passion-tag">Data Science</span>
+          <span class="passion-tag">Computer Vision</span>
+          <span class="passion-tag">NLP</span>
+          <span class="passion-tag">Automation</span>
+          <span class="passion-tag">IoT</span>
+          <span class="passion-tag">Cloud Computing</span>
+          <span class="passion-tag">Open Source</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills" class="section skills-section">
+      <div class="section-bg">
+        <div class="gradient-orb orb-skills-1"></div>
+      </div>
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-tag"><i data-lucide="zap" class="section-tag-icon"></i> Skills & Expertise</span>
+          <h2 class="section-title">Technologies I <br><span class="gradient-text">Master & Deploy</span></h2>
+          <p class="section-subtitle">A curated toolkit of technologies powering intelligent solutions</p>
+        </div>
+
+        <div class="skills-grid" data-animate="fade-up">
+          <!-- Programming -->
+          <div class="skill-card glass-card" data-category="programming">
+            <div class="skill-card-glow"></div>
+            <div class="skill-icon-wrap">
+              <i data-lucide="code-2" class="skill-icon"></i>
+            </div>
+            <h3 class="skill-name">Python</h3>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-level="92"></div>
+            </div>
+            <span class="skill-level">Expert</span>
+          </div>
+
+          <div class="skill-card glass-card" data-category="data">
+            <div class="skill-card-glow"></div>
+            <div class="skill-icon-wrap">
+              <i data-lucide="database" class="skill-icon"></i>
+            </div>
+            <h3 class="skill-name">SQL</h3>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-level="88"></div>
+            </div>
+            <span class="skill-level">Advanced</span>
+          </div>
+
+          <div class="skill-card glass-card" data-category="ai">
+            <div class="skill-card-glow"></div>
+            <div class="skill-icon-wrap">
+              <i data-lucide="brain" class="skill-icon"></i>
+            </div>
+            <h3 class="skill-name">Machine Learning</h3>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-level="90"></div>
+            </div>
+            <span class="skill-level">Expert</span>
+          </div>
+
+          <div class="skill-card glass-card" data-category="ai">
+            <div class="skill-card-glow"></div>
+            <div class="skill-icon-wrap">
+              <i data-lucide="sparkles" class="skill-icon"></i>
+            </div>
+            <h3 class="skill-name">Deep Learning</h3>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-level="82"></div>
+            </div>
+            <span class="skill-level">Advanced</span>
+          </div>
+
+          <div class="skill-card glass-card" data-category="data">
+            <div class="skill-card-glow"></div>
+            <div class="skill-icon-wrap">
+              <i data-lucide="bar-chart-3" class="skill-icon"></i>
+            </div>
+            <h3 class="skill-name">Power BI</h3>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-level="85"></div>
+            </div>
+            <span class="skill-level">Advanced</span>
+          </div>
+
+          <div class="skill-card glass-card" data-category="data">
+            <div class="skill-card-glow"></div>
+            <div class="skill-icon-wrap">
+              <i data-lucide="line-chart" class="skill-icon"></i>
+            </div>
+            <h3 class="skill-name">Data Science</h3>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-level="88"></div>
+            </div>
+            <span class="skill-level">Advanced</span>
+          </div>
+
+          <div class="skill-card glass-card" data-category="ai">
+            <div class="skill-card-glow"></div>
+            <div class="skill-icon-wrap">
+              <i data-lucide="bot" class="skill-icon"></i>
+            </div>
+            <h3 class="skill-name">OpenAI / LLMs</h3>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-level="80"></div>
+            </div>
+            <span class="skill-level">Advanced</span>
+          </div>
+
+          <div class="skill-card glass-card" data-category="tools">
+            <div class="skill-card-glow"></div>
+            <div class="skill-icon-wrap">
+              <i data-lucide="workflow" class="skill-icon"></i>
+            </div>
+            <h3 class="skill-name">N8N Automation</h3>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-level="78"></div>
+            </div>
+            <span class="skill-level">Proficient</span>
+          </div>
+
+          <div class="skill-card glass-card" data-category="tools">
+            <div class="skill-card-glow"></div>
+            <div class="skill-icon-wrap">
+              <i data-lucide="cpu" class="skill-icon"></i>
+            </div>
+            <h3 class="skill-name">IoT</h3>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-level="75"></div>
+            </div>
+            <span class="skill-level">Proficient</span>
+          </div>
+
+          <div class="skill-card glass-card" data-category="tools">
+            <div class="skill-card-glow"></div>
+            <div class="skill-icon-wrap">
+              <i data-lucide="git-branch" class="skill-icon"></i>
+            </div>
+            <h3 class="skill-name">Git & GitHub</h3>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar" data-level="85"></div>
+            </div>
+            <span class="skill-level">Advanced</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section id="experience" class="section experience-section">
+      <div class="section-bg">
+        <div class="gradient-orb orb-exp-1"></div>
+        <div class="gradient-orb orb-exp-2"></div>
+      </div>
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-tag"><i data-lucide="briefcase" class="section-tag-icon"></i> Experience</span>
+          <h2 class="section-title">Professional <br><span class="gradient-text">Journey & Impact</span></h2>
+        </div>
+
+        <div class="timeline" data-animate="fade-up">
+          <div class="timeline-line"></div>
+
+          <!-- Internship 1 -->
+          <div class="timeline-item" data-animate="fade-right">
+            <div class="timeline-dot">
+              <div class="timeline-dot-inner"></div>
+            </div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <span class="timeline-date">01/06/2025 — 30/06/2025</span>
+                <span class="timeline-badge">Certified</span>
+              </div>
+              <h3 class="timeline-title">Machine Learning Intern</h3>
+              <h4 class="timeline-company">Pantech eLearning Pvt. Ltd</h4>
+              <ul class="timeline-details">
+                <li>Successfully completed a certified one-month internship in Machine Learning.</li>
+                <li>Gained hands-on experience in supervised and unsupervised learning algorithms, model development, and evaluation using Python and real-world datasets.</li>
+                <li><strong>Credential:</strong> Certified Professional in Machine Learning – Pantech eLearning Pvt. Ltd.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span>Python</span><span>Supervised Learning</span><span>Unsupervised Learning</span><span>Scikit-learn</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Internship 2 -->
+          <div class="timeline-item" data-animate="fade-left">
+            <div class="timeline-dot">
+              <div class="timeline-dot-inner"></div>
+            </div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <span class="timeline-date">09/06/2025 — 12/07/2025</span>
+                <span class="timeline-badge">Certified</span>
+              </div>
+              <h3 class="timeline-title">Data Analyst Intern</h3>
+              <h4 class="timeline-company">OXI.AI</h4>
+              <ul class="timeline-details">
+                <li>Successfully completed a certified one-month internship in Data Analysis.</li>
+                <li>Gained hands-on experience in data cleaning, pre-processing, visualization, and statistical analysis using Python, SQL, and real-world datasets.</li>
+                <li><strong>Credential:</strong> Certified Data Analyst – OXI.AI</li>
+              </ul>
+              <div class="timeline-tags">
+                <span>Python</span><span>SQL</span><span>Data Cleaning</span><span>EDA</span><span>Visualization</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Internship 3 -->
+          <div class="timeline-item" data-animate="fade-right">
+            <div class="timeline-dot">
+              <div class="timeline-dot-inner"></div>
+            </div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <span class="timeline-date">15/08/2024 — 15/09/2024</span>
+                <span class="timeline-badge">Virtual</span>
+              </div>
+              <h3 class="timeline-title">Machine Learning Intern</h3>
+              <h4 class="timeline-company">Prodigy InfoTech</h4>
+              <ul class="timeline-details">
+                <li>Built predictive machine learning models and conducted exploratory data analysis on industrial benchmark datasets.</li>
+                <li>Applied feature engineering, model evaluation, and regression/classification techniques.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span>Machine Learning</span><span>Pandas</span><span>NumPy</span><span>Predictive Modeling</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Internship 4 -->
+          <div class="timeline-item" data-animate="fade-left">
+            <div class="timeline-dot">
+              <div class="timeline-dot-inner"></div>
+            </div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <span class="timeline-date">01/08/2024 — 30/08/2024</span>
+                <span class="timeline-badge">Virtual</span>
+              </div>
+              <h3 class="timeline-title">Artificial Intelligence Intern</h3>
+              <h4 class="timeline-company">Skill Upgrade</h4>
+              <ul class="timeline-details">
+                <li>Explored artificial intelligence concepts, neural network architectures, and Python AI pipeline integration.</li>
+                <li>Implemented practical AI scripts and machine learning workflow fundamentals.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span>Artificial Intelligence</span><span>Python</span><span>Neural Networks</span><span>AI Workflows</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects" class="section projects-section">
+      <div class="section-bg">
+        <div class="gradient-orb orb-proj-1"></div>
+        <div class="gradient-orb orb-proj-2"></div>
+      </div>
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-tag"><i data-lucide="rocket" class="section-tag-icon"></i> Featured Projects</span>
+          <h2 class="section-title">Solutions That<br><span class="gradient-text">Make an Impact</span></h2>
+          <p class="section-subtitle">Handcrafted projects showcasing AI, ML, and data analytics expertise</p>
+        </div>
+
+        <!-- Project Filters -->
+        <div class="project-filters" data-animate="fade-up">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="ai">AI / ML</button>
+          <button class="filter-btn" data-filter="data">Data Analytics</button>
+          <button class="filter-btn" data-filter="iot">IoT</button>
+          <button class="filter-btn" data-filter="web">Web / Tools</button>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Project 1 -->
+          <article class="project-card glass-card" data-category="ai" data-animate="fade-up">
+            <div class="project-image">
+              <img src="assets/fraud_detection.jpg" alt="AI Fraud Detection System" class="project-img-blur-reveal">
+              <div class="blur-reveal-hint"><i data-lucide="eye"></i> Click to reveal photo</div>
+              <div class="project-overlay">
+                <div class="project-overlay-actions">
+                  <a href="#" class="project-action-btn" aria-label="View on GitHub"><i data-lucide="github"></i></a>
+                  <a href="#" class="project-action-btn" aria-label="Live Demo"><i data-lucide="external-link"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-category-tag">AI / Machine Learning</span>
+                <span class="project-year">Nov 2025 — Apr 2026</span>
+              </div>
+              <h3 class="project-title">AI Fraud Detection System</h3>
+              <p class="project-description">AI-based fraud detection to identify suspicious financial transactions. Implemented Decision Tree, Random Forest, XGBoost, and SVM with SMOTE class imbalance handling and ROC-AUC evaluation.</p>
+              <div class="project-tech">
+                <span>Python</span><span>Scikit-learn</span><span>XGBoost</span><span>Random Forest</span><span>SVM</span><span>SMOTE</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card glass-card" data-category="ai" data-animate="fade-up">
+            <div class="project-image">
+              <img src="assets/customer_segmentation.jpg" alt="Customer Segmentation (K-Means)" class="project-img-blur-reveal">
+              <div class="blur-reveal-hint"><i data-lucide="eye"></i> Click to reveal photo</div>
+              <div class="project-overlay">
+                <div class="project-overlay-actions">
+                  <a href="#" class="project-action-btn" aria-label="View on GitHub"><i data-lucide="github"></i></a>
+                  <a href="#" class="project-action-btn" aria-label="Live Demo"><i data-lucide="external-link"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-category-tag">Machine Learning</span>
+                <span class="project-year">Jun 2025 — Jul 2025</span>
+              </div>
+              <h3 class="project-title">Customer Segmentation (K-Means)</h3>
+              <p class="project-description">Grouped customers based on purchasing behavior and demographic attributes using K-Means clustering. Visualized clusters with Matplotlib & Seaborn for targeted marketing.</p>
+              <div class="project-tech">
+                <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card glass-card" data-category="data" data-animate="fade-up">
+            <div class="project-image">
+              <img src="assets/hr_analytics.jpg" alt="HR Analytics Dashboard (SQL & Power BI)" class="project-img-blur-reveal">
+              <div class="blur-reveal-hint"><i data-lucide="eye"></i> Click to reveal photo</div>
+              <div class="project-overlay">
+                <div class="project-overlay-actions">
+                  <a href="#" class="project-action-btn" aria-label="View on GitHub"><i data-lucide="github"></i></a>
+                  <a href="#" class="project-action-btn" aria-label="Live Demo"><i data-lucide="external-link"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-category-tag">Data Analytics</span>
+                <span class="project-year">Jun 2025 — Jul 2025</span>
+              </div>
+              <h3 class="project-title">HR Analytics Dashboard (SQL & Power BI)</h3>
+              <p class="project-description">Interactive Power BI dashboard tracking headcount, attrition, and recruitment KPIs. Utilized SQL for data extraction & DAX for KPI modeling and automated reports.</p>
+              <div class="project-tech">
+                <span>SQL</span><span>Power BI</span><span>DAX</span><span>Data Modelling</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card glass-card" data-category="iot" data-animate="fade-up">
+            <div class="project-image">
+              <img src="assets/iot_people_counter.jpg" alt="IoT People Counter (IR Sensor)" class="project-img-blur-reveal">
+              <div class="blur-reveal-hint"><i data-lucide="eye"></i> Click to reveal photo</div>
+              <div class="project-overlay">
+                <div class="project-overlay-actions">
+                  <a href="#" class="project-action-btn" aria-label="View on GitHub"><i data-lucide="github"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-category-tag">IoT / Hardware</span>
+                <span class="project-year">Jan 2025 — Present</span>
+              </div>
+              <h3 class="project-title">IoT People Counter (IR Sensor)</h3>
+              <p class="project-description">IoT-based occupancy tracking system using IR sensors and Arduino C/C++ to process real-time entry/exit counts with local LCD display and remote IoT cloud access.</p>
+              <div class="project-tech">
+                <span>Arduino</span><span>C/C++</span><span>IR Sensors</span><span>IoT Modules</span><span>LCD Display</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="project-card glass-card" data-category="web" data-animate="fade-up">
+            <div class="project-image">
+              <img src="assets/ai_idea_generation.jpg" alt="AI-Powered Idea Generation" class="project-img-blur-reveal">
+              <div class="blur-reveal-hint"><i data-lucide="eye"></i> Click to reveal photo</div>
+              <div class="project-overlay">
+                <div class="project-overlay-actions">
+                  <a href="#" class="project-action-btn" aria-label="View on GitHub"><i data-lucide="github"></i></a>
+                  <a href="#" class="project-action-btn" aria-label="Live Demo"><i data-lucide="external-link"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-category-tag">AI / Web</span>
+                <span class="project-year">Aug 2024 — Sep 2024</span>
+              </div>
+              <h3 class="project-title">AI-Powered Idea Generation</h3>
+              <p class="project-description">NLP idea generation tool leveraging OpenAI API and Streamlit to produce creative, context-specific suggestions from user input keywords in real time.</p>
+              <div class="project-tech">
+                <span>Python</span><span>OpenAI API</span><span>NLP</span><span>Streamlit</span><span>Pandas</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CERTIFICATIONS ===================== -->
+    <section id="certifications" class="section certifications-section">
+      <div class="section-bg">
+        <div class="gradient-orb orb-cert-1"></div>
+      </div>
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-tag"><i data-lucide="award" class="section-tag-icon"></i> Certifications</span>
+          <h2 class="section-title">Credentials That<br><span class="gradient-text">Validate Expertise</span></h2>
+        </div>
+
+        <div class="certs-grid" data-animate="fade-up">
+          <div class="cert-card glass-card">
+            <div class="cert-badge">
+              <i data-lucide="award"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Oracle Cloud Infrastructure 2023 AI Certified Foundations Associate</h3>
+              <p class="cert-issuer">Oracle | Valid until May 22, 2026</p>
+              <span class="cert-tag">Cloud & AI</span>
+            </div>
+            <div class="cert-glow"></div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-badge">
+              <i data-lucide="bar-chart-3"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Data Analysis (4 Credit Course)</h3>
+              <p class="cert-issuer">NPTEL / SWAYAM (Punjabi University, Patiala)</p>
+              <span class="cert-tag">Data Analytics</span>
+            </div>
+            <div class="cert-glow"></div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-badge">
+              <i data-lucide="code-2"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Python for Beginners</h3>
+              <p class="cert-issuer">Udemy</p>
+              <span class="cert-tag">Programming</span>
+            </div>
+            <div class="cert-glow"></div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-badge">
+              <i data-lucide="brain"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Introduction to Machine Learning</h3>
+              <p class="cert-issuer">SWAYAM (In Progress)</p>
+              <span class="cert-tag">Machine Learning</span>
+            </div>
+            <div class="cert-glow"></div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-badge">
+              <i data-lucide="database"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Database Management System</h3>
+              <p class="cert-issuer">Infosys Springboard (In Progress)</p>
+              <span class="cert-tag">DBMS / SQL</span>
+            </div>
+            <div class="cert-glow"></div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-badge">
+              <i data-lucide="palette"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Graphic Design Online Certification</h3>
+              <p class="cert-issuer">Great Learning (Completed Mar 2024)</p>
+              <span class="cert-tag">Design</span>
+            </div>
+            <div class="cert-glow"></div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-badge">
+              <i data-lucide="layout"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Learning Canva</h3>
+              <p class="cert-issuer">Canva (Completed Feb 2024)</p>
+              <span class="cert-tag">Canva / Design</span>
+            </div>
+            <div class="cert-glow"></div>
+          </div>
+
+          <div class="cert-card glass-card">
+            <div class="cert-badge">
+              <i data-lucide="check-circle-2"></i>
+            </div>
+            <div class="cert-info">
+              <h3>Python Course</h3>
+              <p class="cert-issuer">Udemy (In Progress)</p>
+              <span class="cert-tag">Python</span>
+            </div>
+            <div class="cert-glow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LEADERSHIP ===================== -->
+    <section id="leadership" class="section leadership-section">
+      <div class="section-bg">
+        <div class="gradient-orb orb-lead-1"></div>
+      </div>
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-tag"><i data-lucide="crown" class="section-tag-icon"></i> Leadership</span>
+          <h2 class="section-title">Leading With<br><span class="gradient-text">Purpose & Impact</span></h2>
+        </div>
+
+        <div class="leadership-grid" data-animate="fade-up">
+          <div class="leadership-card glass-card gold-border-card leadership-card-featured">
+            <div class="leadership-icon icon-gold"><i data-lucide="trophy"></i></div>
+            <div class="award-header-tag gold-tag"><i data-lucide="award"></i> PRESTIGIOUS AWARD</div>
+            <h3>Best Outgoing Student</h3>
+            <p>Awarded the highest departmental honor for overall excellence in academics, technical innovation, multi-year leadership, and campus event execution in Computer Science & Engineering.</p>
+            <div class="leadership-stat">
+              <span class="leadership-stat-label gold-label">CSE Department — Adithya Institute of Technology</span>
+            </div>
+          </div>
+
+          <div class="leadership-card glass-card">
+            <div class="leadership-icon"><i data-lucide="crown"></i></div>
+            <h3>Class Representative</h3>
+            <p>Represented the class for three consecutive years, bridging communication between faculty and students while resolving concerns effectively.</p>
+            <div class="leadership-stat">
+              <span class="leadership-stat-number" data-count="3">0</span> Years
+              <span class="leadership-stat-label">Consecutive Leadership</span>
+            </div>
+          </div>
+
+          <div class="leadership-card glass-card">
+            <div class="leadership-icon"><i data-lucide="coins"></i></div>
+            <h3>Association Treasurer & Coordinator</h3>
+            <p>Managed finances as Treasurer and acted as Overall Coordinator, handling planning, budgeting, and execution of association functions.</p>
+            <div class="leadership-stat">
+              <span class="leadership-stat-number" data-count="100">0</span>%
+              <span class="leadership-stat-label">Budget & Planning Execution</span>
+            </div>
+          </div>
+
+          <div class="leadership-card glass-card">
+            <div class="leadership-icon"><i data-lucide="briefcase"></i></div>
+            <h3>Placement Coordinator</h3>
+            <p>Coordinated placement activities between students and recruiters, assisting in scheduling, communication, and preparation support for peers.</p>
+            <div class="leadership-stat">
+              <span class="leadership-stat-number" data-count="100">0</span>+
+              <span class="leadership-stat-label">Students Supported</span>
+            </div>
+          </div>
+
+          <div class="leadership-card glass-card">
+            <div class="leadership-icon"><i data-lucide="calendar"></i></div>
+            <h3>Department Event Coordinator</h3>
+            <p>Took the lead in organizing and coordinating various departmental events, ensuring active student participation and successful outcomes.</p>
+            <div class="leadership-stat">
+              <span class="leadership-stat-number" data-count="10">0</span>+
+              <span class="leadership-stat-label">Departmental Events</span>
+            </div>
+          </div>
+
+          <div class="leadership-card glass-card">
+            <div class="leadership-icon"><i data-lucide="sparkles"></i></div>
+            <h3>Onam Function Coordinator</h3>
+            <p>Led as Student Coordinator for Onam celebrations, managing teams and overseeing all cultural and logistics arrangements.</p>
+            <div class="leadership-stat">
+              <span class="leadership-stat-number" data-count="500">0</span>+
+              <span class="leadership-stat-label">Attendees Managed</span>
+            </div>
+          </div>
+
+          <div class="leadership-card glass-card">
+            <div class="leadership-icon"><i data-lucide="award"></i></div>
+            <h3>Association Office Bearer</h3>
+            <p>Served as an active office bearer, coordinating student participation and ensuring smooth execution of all departmental events.</p>
+            <div class="leadership-stat">
+              <span class="leadership-stat-number" data-count="100">0</span>%
+              <span class="leadership-stat-label">Active Participation</span>
+            </div>
+          </div>
+
+          <div class="leadership-card glass-card">
+            <div class="leadership-icon"><i data-lucide="heart-handshake"></i></div>
+            <h3>Farewell Function Coordinator</h3>
+            <p>Organized and coordinated farewell functions for seniors twice, supervising event planning, resource allocation, and team management.</p>
+            <div class="leadership-stat">
+              <span class="leadership-stat-number" data-count="2">0</span>x
+              <span class="leadership-stat-label">Senior Farewell Events</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EDUCATION ===================== -->
+    <section id="education" class="section education-section">
+      <div class="section-bg">
+        <div class="gradient-orb orb-edu-1"></div>
+        <div class="gradient-orb orb-edu-2"></div>
+      </div>
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-tag"><i data-lucide="graduation-cap" class="section-tag-icon"></i> Education</span>
+          <h2 class="section-title">Academic<br><span class="gradient-text">Foundation & Growth</span></h2>
+        </div>
+
+        <div class="education-timeline" data-animate="fade-up">
+          <div class="edu-card glass-card" data-animate="fade-right">
+            <div class="edu-year-badge">2022 — 2026</div>
+            <div class="edu-content">
+              <div class="edu-icon"><i data-lucide="building-2"></i></div>
+              <h3>Bachelor of Engineering</h3>
+              <h4>Computer Science & Engineering</h4>
+              <p class="edu-college">Adithya Institute of Technology, Coimbatore, Tamil Nadu</p>
+              <div class="edu-cgpa">
+                <span class="cgpa-label">CGPA</span>
+                <span class="cgpa-value" data-count="8.15">0</span>
+                <span class="cgpa-total">/ 10 (Till Sem 6)</span>
+              </div>
+              <div class="edu-highlights">
+                <span class="gold-badge-highlight"><i data-lucide="trophy"></i> Best Outgoing Student</span>
+                <span>Technical Club Lead</span>
+                <span>Placement Coordinator</span>
+                <span>Class Representative</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="edu-card glass-card" data-animate="fade-left">
+            <div class="edu-year-badge">2020 — 2022</div>
+            <div class="edu-content">
+              <div class="edu-icon"><i data-lucide="school"></i></div>
+              <h3>Higher Secondary Education</h3>
+              <h4>HSC (Computer Science) — 75%</h4>
+              <p class="edu-college">Sri Vidhya Mandir Matric Higher Secondary School</p>
+              <div class="edu-cgpa">
+                <span class="cgpa-label">HSC Score</span>
+                <span class="cgpa-value" data-count="75">0</span>
+                <span class="cgpa-total">%</span>
+              </div>
+              <div class="edu-highlights">
+                <span>SSLC Score: 88%</span>
+                <span>Sri Vidhya Mandir School</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- ===================== CO-CURRICULAR & EXTRA CURRICULAR ===================== -->
+    <section id="activities" class="section activities-section">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-tag"><i data-lucide="sparkles" class="section-tag-icon"></i> Workshops & Activities</span>
+          <h2 class="section-title">Co-Curricular & <br><span class="gradient-text">Extra Curricular</span></h2>
+        </div>
+
+        <div class="glass-card" style="padding: 32px;" data-animate="fade-up">
+          <ul class="timeline-details" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+            <li><strong>Industrial IoT Training:</strong> Attended 1-week hands-on training on "INDUSTRIAL IoT" (Feb 03-08, 2025).</li>
+            <li><strong>Cybersecurity Workshop:</strong> Participated at Amrita University, Coimbatore.</li>
+            <li><strong>Python Masterclass:</strong> Python Fundamentals in 90 Minutes (AI & Data concepts foundation).</li>
+            <li><strong>Web Development Workshop:</strong> Web Application Development workshop at HREY'S TECH-HUB.</li>
+            <li><strong>Power BI Data Visualization:</strong> Interactive dashboard creation and data modeling training.</li>
+            <li><strong>Campus Ambassador:</strong> Served as Campus Ambassador (Apr 2025 – May 2025) leading student outreach.</li>
+            <li><strong>Hackathons & Technical Events:</strong> Active participation in hackathons designing innovative tech solutions.</li>
+            <li><strong>Creative Design:</strong> Designed posters and promotional materials for college events using Canva & Adobe Photoshop.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="section contact-section">
+      <div class="section-bg">
+        <div class="gradient-orb orb-contact-1"></div>
+        <div class="gradient-orb orb-contact-2"></div>
+      </div>
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-tag"><i data-lucide="send" class="section-tag-icon"></i> Get In Touch</span>
+          <h2 class="section-title">Let's Build Something<br><span class="gradient-text">Extraordinary Together</span></h2>
+          <p class="section-subtitle">Whether you have a project idea, an opportunity, or just want to say hello — my inbox is always open.</p>
+        </div>
+
+        <div class="contact-grid" data-animate="fade-up">
+          <div class="contact-info-col">
+            <div class="contact-info-card glass-card">
+              <div class="contact-info-item">
+                <div class="contact-info-icon"><i data-lucide="mail"></i></div>
+                <div>
+                  <span class="contact-info-label">Email</span>
+                  <a href="mailto:poovaragavan450@gmail.com" class="contact-info-value">poovaragavan450@gmail.com</a>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon"><i data-lucide="linkedin"></i></div>
+                <div>
+                  <span class="contact-info-label">LinkedIn</span>
+                  <a href="https://linkedin.com/" target="_blank" rel="noopener" class="contact-info-value">Poovaragavan C</a>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon"><i data-lucide="phone"></i></div>
+                <div>
+                  <span class="contact-info-label">Phone</span>
+                  <a href="tel:+919080777010" class="contact-info-value">+91 9080777010</a>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon"><i data-lucide="map-pin"></i></div>
+                <div>
+                  <span class="contact-info-label">Location</span>
+                  <span class="contact-info-value">Coimbatore, Tamil Nadu</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-socials">
+              <a href="https://github.com/" target="_blank" rel="noopener" class="contact-social-btn magnetic-btn" aria-label="GitHub"><i data-lucide="github"></i></a>
+              <a href="https://linkedin.com/" target="_blank" rel="noopener" class="contact-social-btn magnetic-btn" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+              <a href="mailto:poovaragavan450@gmail.com" class="contact-social-btn magnetic-btn" aria-label="Email"><i data-lucide="mail"></i></a>
+            </div>
+          </div>
+
+          <form class="contact-form glass-card" id="contact-form" aria-label="Contact form">
+            <div class="form-group">
+              <label for="form-name" class="form-label">Your Name</label>
+              <input type="text" id="form-name" name="name" class="form-input" placeholder="John Doe" required>
+              <div class="form-input-glow"></div>
+            </div>
+            <div class="form-group">
+              <label for="form-email" class="form-label">Your Email</label>
+              <input type="email" id="form-email" name="email" class="form-input" placeholder="john@example.com" required>
+              <div class="form-input-glow"></div>
+            </div>
+            <div class="form-group">
+              <label for="form-subject" class="form-label">Subject</label>
+              <input type="text" id="form-subject" name="subject" class="form-input" placeholder="Project Collaboration">
+              <div class="form-input-glow"></div>
+            </div>
+            <div class="form-group">
+              <label for="form-message" class="form-label">Message</label>
+              <textarea id="form-message" name="message" class="form-input form-textarea" rows="5" placeholder="Tell me about your project..." required></textarea>
+              <div class="form-input-glow"></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full magnetic-btn">
+              <i data-lucide="send" class="btn-icon"></i>
+              <span>Send Message</span>
+              <div class="btn-glow"></div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#hero" class="footer-logo">
+            <span class="logo-bracket">&lt;</span>PC<span class="logo-bracket">/&gt;</span>
+          </a>
+          <p>Building intelligent AI solutions for real-world impact.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-socials">
+          <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github"></i></a>
+          <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+          <a href="mailto:poovaragavan450@gmail.com" aria-label="Email"><i data-lucide="mail"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Poovaragavan C. Crafted with passion & code.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="back-to-top magnetic-btn" aria-label="Back to top">
+    <i data-lucide="chevron-up"></i>
+  </button>
+
+  <!-- AI Assistant Widget -->
+  <div id="ai-assistant" class="ai-assistant">
+    <button id="ai-assistant-toggle" class="ai-assistant-toggle magnetic-btn" aria-label="AI Assistant">
+      <i data-lucide="bot" class="ai-icon-open"></i>
+      <i data-lucide="x" class="ai-icon-close"></i>
+    </button>
+    <div class="ai-assistant-panel glass-card" id="ai-panel" aria-hidden="true">
+      <div class="ai-panel-header">
+        <div class="ai-panel-title">
+          <i data-lucide="sparkles"></i>
+          <span>AI Assistant</span>
+        </div>
+        <span class="ai-panel-badge">Beta</span>
+      </div>
+      <div class="ai-panel-body" id="ai-chat">
+        <div class="ai-message ai-bot">
+          <p>👋 Hi! I'm Poova's AI assistant. Ask me anything about his skills, projects, or experience!</p>
+        </div>
+      </div>
+      <div class="ai-panel-input">
+        <input type="text" id="ai-input" placeholder="Ask me anything..." aria-label="Ask AI assistant">
+        <button id="ai-send" aria-label="Send message"><i data-lucide="send"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
