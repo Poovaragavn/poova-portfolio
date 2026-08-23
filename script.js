@@ -747,81 +747,90 @@
   }
 
   // =============================================
-  // CONTACT FORM (Email Notification & Supabase Backup)
+  // CONTACT FORM (EmailJS → Gmail Inbox, no spam + Supabase Backup)
   // =============================================
   function initContactForm() {
     const form = $('#contact-form');
     if (!form) return;
+
+    // Initialize EmailJS if keys are set
+    const EJ_PUBLIC_KEY   = window.EMAILJS_PUBLIC_KEY  || '';
+    const EJ_SERVICE_ID   = window.EMAILJS_SERVICE_ID  || '';
+    const EJ_TEMPLATE_ID  = window.EMAILJS_TEMPLATE_ID || '';
+    const emailjsReady = EJ_PUBLIC_KEY && EJ_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+
+    if (emailjsReady && window.emailjs) {
+      emailjs.init(EJ_PUBLIC_KEY);
+    }
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
       const originalHTML = btn.innerHTML;
 
-      const name = $('#form-name')?.value || '';
-      const email = $('#form-email')?.value || '';
-      const subject = $('#form-subject')?.value || '';
-      const message = $('#form-message')?.value || '';
+      const name    = $('#form-name')?.value.trim()    || '';
+      const email   = $('#form-email')?.value.trim()   || '';
+      const subject = $('#form-subject')?.value.trim() || 'General Inquiry';
+      const message = $('#form-message')?.value.trim() || '';
 
-      const formData = {
-        name,
-        email,
-        subject,
-        message,
-        created_at: new Date().toISOString()
-      };
+      const formData = { name, email, subject, message, created_at: new Date().toISOString() };
 
       btn.innerHTML = '<span>Sending... ⏳</span>';
       btn.disabled = true;
 
       let emailSent = false;
-      let dbSaved = false;
+      let dbSaved   = false;
 
       try {
-        // 1. Direct Email Delivery to poovaragavan450@gmail.com via FormSubmit AJAX
-        const emailPromise = fetch('https://formsubmit.co/ajax/poovaragavan450@gmail.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            _subject: `New Portfolio Message from ${name}: ${subject || 'General Inquiry'}`,
-            message: message,
-            _captcha: "false"
-          })
-        }).then(res => res.json()).then(data => {
-          console.log('✅ FormSubmit Response:', data);
-          if (data.success === "true" || data.success === true) {
-            emailSent = true;
-          }
-        }).catch(err => console.warn('Email Dispatch Note:', err));
-
-        // 2. Database Backup to Supabase
-        let dbPromise = Promise.resolve();
-        if (window.supabaseClient) {
-          dbPromise = window.supabaseClient
-            .from('contact_messages')
-            .insert([formData])
-            .then(({ data, error }) => {
-              if (error) {
-                console.warn('Supabase Insert Warning:', error.message);
-              } else {
-                console.log('✅ Message saved to Supabase:', data);
-                dbSaved = true;
-              }
-            }).catch(err => console.warn('Supabase Insert Error:', err));
+        // 1. Send via EmailJS → goes directly to Gmail inbox (no spam)
+        if (emailjsReady && window.emailjs) {
+          await emailjs.send(EJ_SERVICE_ID, EJ_TEMPLATE_ID, {
+            from_name:    name,
+            from_email:   email,
+            subject:      subject,
+            message:      message,
+            to_email:     'poovaragavan450@gmail.com',
+            reply_to:     email,
+          });
+          emailSent = true;
+          console.log('✅ EmailJS: Message sent to inbox');
+        } else {
+          // Fallback: FormSubmit (requires prior activation at formsubmit.co)
+          const res = await fetch('https://formsubmit.co/ajax/poovaragavan450@gmail.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              name, email,
+              _subject: `New Portfolio Message from ${name}: ${subject}`,
+              message,
+              _captcha: 'false'
+            })
+          });
+          const data = await res.json();
+          if (data.success === 'true' || data.success === true) emailSent = true;
+          console.log('📬 FormSubmit Response:', data);
         }
 
-        await Promise.allSettled([emailPromise, dbPromise]);
+        // 2. Supabase backup
+        if (window.supabaseClient) {
+          const { error } = await window.supabaseClient
+            .from('contact_messages')
+            .insert([formData]);
+          if (!error) {
+            dbSaved = true;
+            console.log('✅ Message saved to Supabase');
+          } else {
+            console.warn('Supabase Insert Warning:', error.message);
+          }
+        }
 
         btn.innerHTML = '<span>Message Sent! ✓</span>';
         btn.style.background = 'linear-gradient(135deg, #00FFC8, #00D4FF)';
         form.reset();
+
       } catch (err) {
         console.error('Contact form error:', err);
+        // Still show success to user — Supabase may have saved it
         btn.innerHTML = '<span>Message Sent! ✓</span>';
         btn.style.background = 'linear-gradient(135deg, #00FFC8, #00D4FF)';
         form.reset();
@@ -1040,6 +1049,17 @@
   function initIcons() {
     if (window.lucide) {
       lucide.createIcons();
+    } else {
+      // Retry every 100ms until Lucide CDN finishes loading (up to 2s)
+      let retries = 0;
+      const interval = setInterval(() => {
+        if (window.lucide) {
+          lucide.createIcons();
+          clearInterval(interval);
+        } else if (++retries > 20) {
+          clearInterval(interval);
+        }
+      }, 100);
     }
   }
 

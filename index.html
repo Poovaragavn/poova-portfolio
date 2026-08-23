@@ -19,13 +19,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 
   <!-- Supabase JS Client & Config -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     window.ENV_SUPABASE_URL = 'https://uiytlzwggkxwhhyjmotl.supabase.co'; 
     window.ENV_SUPABASE_ANON_KEY = 'sb_publishable_paemvekmDr6KH6v4wvBm4w_ikUgowzM';
+  </script>
+
+  <!-- EmailJS SDK (contact form → Gmail inbox, no spam) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // ⚠️ Replace these 3 values with your EmailJS credentials (see setup guide)
+    window.EMAILJS_PUBLIC_KEY    = 'YOUR_PUBLIC_KEY';    // from emailjs.com → Account → API Keys
+    window.EMAILJS_SERVICE_ID    = 'YOUR_SERVICE_ID';    // from emailjs.com → Email Services
+    window.EMAILJS_TEMPLATE_ID   = 'YOUR_TEMPLATE_ID';  // from emailjs.com → Email Templates
+    if (window.emailjs && window.EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+      emailjs.init(window.EMAILJS_PUBLIC_KEY);
+    }
   </script>
 
   <link rel="stylesheet" href="styles.css">
