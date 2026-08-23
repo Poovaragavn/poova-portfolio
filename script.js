@@ -793,9 +793,11 @@
             _captcha: "false"
           })
         }).then(res => res.json()).then(data => {
-          console.log('✅ FormSubmit Response:', data);
+          console.log('📬 FormSubmit Response:', data);
           if (data.success === "true" || data.success === true) {
             emailSent = true;
+          } else if (data.message && data.message.includes('Activation')) {
+            console.warn('⚠️ FormSubmit Pending Activation: Check inbox for poovaragavan450@gmail.com to activate.');
           }
         }).catch(err => console.warn('Email Dispatch Note:', err));
 
