@@ -30,7 +30,7 @@
   function initLoader() {
     const loader = $('#loader');
     if (!loader) return;
-    
+
     const hideLoader = () => {
       if (loader.classList.contains('hidden')) return;
       loader.classList.add('hidden');
@@ -425,7 +425,7 @@
   // =============================================
   function initScrollAnimations() {
     const elements = $$('[data-animate]');
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, idx) => {
         if (entry.isIntersecting) {
@@ -642,7 +642,7 @@
         const target = $(href);
         if (target) {
           let top = target.offsetTop - 70;
-          
+
           // Special handling for Contact section at bottom of page
           if (href === '#contact') {
             const contactForm = $('#contact-form');
@@ -749,9 +749,9 @@
     if (!form) return;
 
     // Initialize EmailJS if keys are set
-    const EJ_PUBLIC_KEY   = window.EMAILJS_PUBLIC_KEY  || '';
-    const EJ_SERVICE_ID   = window.EMAILJS_SERVICE_ID  || '';
-    const EJ_TEMPLATE_ID  = window.EMAILJS_TEMPLATE_ID || '';
+    const EJ_PUBLIC_KEY = window.EMAILJS_PUBLIC_KEY || '';
+    const EJ_SERVICE_ID = window.EMAILJS_SERVICE_ID || '';
+    const EJ_TEMPLATE_ID = window.EMAILJS_TEMPLATE_ID || '';
     const emailjsReady = EJ_PUBLIC_KEY && EJ_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
 
     if (emailjsReady && window.emailjs) {
@@ -763,8 +763,8 @@
       const btn = form.querySelector('button[type="submit"]');
       const originalHTML = btn.innerHTML;
 
-      const name    = $('#form-name')?.value.trim()    || '';
-      const email   = $('#form-email')?.value.trim()   || '';
+      const name = $('#form-name')?.value.trim() || '';
+      const email = $('#form-email')?.value.trim() || '';
       const subject = $('#form-subject')?.value.trim() || 'General Inquiry';
       const message = $('#form-message')?.value.trim() || '';
 
@@ -774,18 +774,18 @@
       btn.disabled = true;
 
       let emailSent = false;
-      let dbSaved   = false;
+      let dbSaved = false;
 
       try {
         // 1. Send via EmailJS → goes directly to Gmail inbox (no spam)
         if (emailjsReady && window.emailjs) {
           await emailjs.send(EJ_SERVICE_ID, EJ_TEMPLATE_ID, {
-            from_name:    name,
-            from_email:   email,
-            subject:      subject,
-            message:      message,
-            to_email:     'poovaragavan450@gmail.com',
-            reply_to:     email,
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message,
+            to_email: 'poovaragavan450@gmail.com',
+            reply_to: email,
           });
           emailSent = true;
           console.log('✅ EmailJS: Message sent to inbox');
@@ -896,7 +896,7 @@
     const isMobile = window.innerWidth <= 768;
     const nodeCount = isMobile ? 35 : 95;
     const nodes = [];
-    
+
     for (let i = 0; i < nodeCount; i++) {
       nodes.push({
         x: Math.random() * width,
@@ -960,9 +960,9 @@
       const waveY = height * 0.82 + Math.sin(time * 1.2) * 30;
       ctx.moveTo(0, height);
       for (let x = 0; x <= width; x += 30) {
-        const y = waveY + Math.sin(x * 0.005 + time * 1.5 + scrollRatio * Math.PI * 4) * 40 
-                        + Math.cos(x * 0.008 - time * 0.8) * 20 
-                        - (scrollVelocity * 1.2);
+        const y = waveY + Math.sin(x * 0.005 + time * 1.5 + scrollRatio * Math.PI * 4) * 40
+          + Math.cos(x * 0.008 - time * 0.8) * 20
+          - (scrollVelocity * 1.2);
         ctx.lineTo(x, y);
       }
       ctx.lineTo(width, height);
@@ -1079,7 +1079,7 @@
     }
 
     // Global verification helper for user
-    window.checkSupabaseStatus = function() {
+    window.checkSupabaseStatus = function () {
       console.group('⚡ SUPABASE CONNECTION DIAGNOSTIC');
       console.log('1. Supabase Library (window.supabase):', window.supabase ? '✅ Installed & Active' : '❌ Not Loaded');
       console.log('2. Supabase Project URL:', SUPABASE_URL ? `✅ ${SUPABASE_URL}` : '❌ Missing');
