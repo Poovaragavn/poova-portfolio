@@ -36,13 +36,15 @@
       loader.classList.add('hidden');
       state.loaded = true;
       document.body.style.overflow = '';
-      if (typeof initScrollAnimations === 'function') initScrollAnimations();
+      initScrollAnimations();
     };
 
-    // Instant hide to prevent page load delays
-    hideLoader();
-    setTimeout(hideLoader, 10);
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(hideLoader, 50);
+    }
+    setTimeout(hideLoader, 300);
     window.addEventListener('DOMContentLoaded', hideLoader);
+    window.addEventListener('load', hideLoader);
   }
 
   // =============================================
@@ -194,8 +196,12 @@
     if (!el) return;
 
     const roles = [
+      'AI Engineer',
+      'Machine Learning Engineer',
+      'Data Analyst',
       'Python Developer',
-      'Software Developer',
+      'Deep Learning Enthusiast',
+      'IoT Innovator',
     ];
     let roleIdx = 0;
     let charIdx = 0;
@@ -787,11 +793,9 @@
             _captcha: "false"
           })
         }).then(res => res.json()).then(data => {
-          console.log('📬 FormSubmit Response:', data);
+          console.log('✅ FormSubmit Response:', data);
           if (data.success === "true" || data.success === true) {
             emailSent = true;
-          } else if (data.message && data.message.includes('Activation')) {
-            console.warn('⚠️ FormSubmit Pending Activation: Check inbox for poovaragavan450@gmail.com to activate.');
           }
         }).catch(err => console.warn('Email Dispatch Note:', err));
 
@@ -1069,18 +1073,6 @@
       console.groupEnd();
       return window.supabaseClient ? '✅ Supabase is 100% CONNECTED to your portfolio!' : '⚠️ Supabase check completed.';
     };
-  // =============================================
-  // LUCIDE ICONS INITIALIZATION
-  // =============================================
-  function initIcons() {
-    const render = () => {
-      if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
-        lucide.createIcons();
-      }
-    };
-    render();
-    setTimeout(render, 100);
-    setTimeout(render, 500);
   }
 
   // =============================================

@@ -260,14 +260,6 @@ def create_resume():
     
     internships = [
         {
-            "title": "TecheronNexus Startup – Junior Software Developer & Designing Trainee",
-            "date": "1 Month",
-            "bullets": [
-                "Gained hands-on experience in software development and interface design during a 1-month program at TecheronNexus Startup.",
-                "Worked on software feature implementation, Python application code, and UI/UX design assets."
-            ]
-        },
-        {
             "title": "Pantech eLearning Pvt. Ltd – Machine Learning",
             "date": "01/06/2025 to 30/06/2025",
             "bullets": [
