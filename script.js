@@ -36,15 +36,13 @@
       loader.classList.add('hidden');
       state.loaded = true;
       document.body.style.overflow = '';
-      initScrollAnimations();
+      if (typeof initScrollAnimations === 'function') initScrollAnimations();
     };
 
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      setTimeout(hideLoader, 50);
-    }
-    setTimeout(hideLoader, 300);
+    // Instant hide to prevent page load delays
+    hideLoader();
+    setTimeout(hideLoader, 10);
     window.addEventListener('DOMContentLoaded', hideLoader);
-    window.addEventListener('load', hideLoader);
   }
 
   // =============================================
@@ -196,12 +194,8 @@
     if (!el) return;
 
     const roles = [
-      'AI Engineer',
-      'Machine Learning Engineer',
-      'Data Analyst',
       'Python Developer',
-      'Deep Learning Enthusiast',
-      'IoT Innovator',
+      'Software Developer',
     ];
     let roleIdx = 0;
     let charIdx = 0;
@@ -1075,6 +1069,18 @@
       console.groupEnd();
       return window.supabaseClient ? '✅ Supabase is 100% CONNECTED to your portfolio!' : '⚠️ Supabase check completed.';
     };
+  // =============================================
+  // LUCIDE ICONS INITIALIZATION
+  // =============================================
+  function initIcons() {
+    const render = () => {
+      if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+        lucide.createIcons();
+      }
+    };
+    render();
+    setTimeout(render, 100);
+    setTimeout(render, 500);
   }
 
   // =============================================
