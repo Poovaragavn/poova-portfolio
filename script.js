@@ -196,12 +196,7 @@
     if (!el) return;
 
     const roles = [
-      'AI Engineer',
-      'Machine Learning Engineer',
-      'Data Analyst',
-      'Python Developer',
-      'Deep Learning Enthusiast',
-      'IoT Innovator',
+      'Python Developer / Software Developer',
     ];
     let roleIdx = 0;
     let charIdx = 0;
