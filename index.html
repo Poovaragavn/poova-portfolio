@@ -21,15 +21,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Lucide Icons -->
-  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <!-- Lucide Icons (sync - must load before script.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
 
   <!-- Supabase JS Client & Config -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     window.ENV_SUPABASE_URL = 'https://uiytlzwggkxwhhyjmotl.supabase.co'; 
     window.ENV_SUPABASE_ANON_KEY = 'sb_publishable_paemvekmDr6KH6v4wvBm4w_ikUgowzM';
   </script>
+
+  <!-- Force loader hidden after max 400ms even if JS fails -->
+  <style>
+    #loader { animation: forceHide 0s 0.4s forwards; }
+    @keyframes forceHide { to { opacity: 0; visibility: hidden; pointer-events: none; display: none; } }
+  </style>
 
   <link rel="stylesheet" href="styles.css">
 </head>
