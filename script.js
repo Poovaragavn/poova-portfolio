@@ -24,6 +24,7 @@
   const lerp = (a, b, t) => a + (b - a) * t;
   const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
 
+
   // =============================================
   // LOADING SCREEN
   // =============================================
@@ -125,51 +126,90 @@
     }, { passive: true });
 
     // Mobile toggle
-    navToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = navToggle.classList.toggle('active');
-      mobileNav.classList.toggle('active');
-      mobileNav.setAttribute('aria-hidden', !isOpen);
-      navToggle.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
+    if (navToggle && mobileNav) {
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = navToggle.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        mobileNav.setAttribute('aria-hidden', !isOpen);
+        navToggle.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+    }
 
     const closeMobileNav = () => {
-      navToggle.classList.remove('active');
-      mobileNav.classList.remove('active');
-      mobileNav.setAttribute('aria-hidden', 'true');
-      navToggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+      if (navToggle && mobileNav) {
+        navToggle.classList.remove('active');
+        mobileNav.classList.remove('active');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
     };
 
-    // Close mobile nav on link click
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', closeMobileNav);
+    // Smooth scroll for all hash links
+    const allHashLinks = $$('a[href^="#"]');
+    allHashLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+        const targetEl = $(href);
+        if (targetEl) {
+          e.preventDefault();
+          const navOffset = 80;
+          const targetTop = targetEl.getBoundingClientRect().top + window.scrollY - navOffset;
+          window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: 'smooth'
+          });
+          closeMobileNav();
+        }
+      });
     });
 
-    // Close mobile nav on backdrop tap outside links
-    mobileNav.addEventListener('click', (e) => {
-      if (e.target === mobileNav) {
-        closeMobileNav();
-      }
-    });
+    // Close mobile nav on backdrop click
+    if (mobileNav) {
+      mobileNav.addEventListener('click', (e) => {
+        if (e.target === mobileNav) {
+          closeMobileNav();
+        }
+      });
+    }
 
-    // Active nav link on scroll
+    // Active nav link tracking on scroll
     const sections = $$('section[id]');
     function updateActiveNav() {
-      const scrollPos = window.scrollY + 200;
+      const scrollPos = window.scrollY + 180;
+      let currentId = 'hero';
+
       sections.forEach(section => {
         const top = section.offsetTop;
         const height = section.offsetHeight;
         const id = section.getAttribute('id');
         if (scrollPos >= top && scrollPos < top + height) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          const activeLink = $(`[data-nav][href="#${id}"]`);
-          if (activeLink) activeLink.classList.add('active');
+          currentId = id;
+        }
+      });
+
+      navLinks.forEach(l => {
+        if (l.getAttribute('href') === `#${currentId}`) {
+          l.classList.add('active');
+        } else {
+          l.classList.remove('active');
+        }
+      });
+
+      mobileLinks.forEach(l => {
+        if (l.getAttribute('href') === `#${currentId}`) {
+          l.classList.add('active');
+        } else {
+          l.classList.remove('active');
         }
       });
     }
+
     window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
   }
 
   // =============================================
@@ -421,27 +461,62 @@
   }
 
   // =============================================
-  // SCROLL ANIMATIONS (IntersectionObserver)
+  // SCROLL ANIMATIONS (Comprehensive Stagger Suite)
   // =============================================
   function initScrollAnimations() {
+    // 1. Auto-tag and stagger grid children across all sections
+    const staggerGroups = [
+      { container: '.about-content', items: '.about-text-card', anim: 'fade-right' },
+      { container: '.about-stats', items: '.stat-card', anim: 'scale' },
+      { container: '.passion-tags', items: '.passion-tag', anim: 'fade-up' },
+      { container: '.skills-grid', items: '.skill-card', anim: 'fade-up' },
+      { container: '.certs-grid', items: '.cert-card', anim: 'fade-up' },
+      { container: '.leadership-grid', items: '.leadership-card', anim: 'fade-up' },
+      { container: '.education-timeline', items: '.edu-card', anim: 'fade-up' },
+      { container: '.activities-section', items: '.timeline-details li', anim: 'fade-up' },
+      { container: '.contact-info-card', items: '.contact-info-item', anim: 'fade-right' },
+      { container: '.contact-socials', items: '.contact-social-btn', anim: 'fade-up' },
+      { container: '.contact-form', items: '.form-group, button[type="submit"]', anim: 'fade-left' },
+    ];
+
+    staggerGroups.forEach(group => {
+      const parent = $(group.container);
+      if (parent) {
+        const children = $$(group.items, parent);
+        children.forEach((child, idx) => {
+          if (!child.hasAttribute('data-animate')) {
+            child.setAttribute('data-animate', group.anim);
+          }
+          child.style.setProperty('--stagger', idx);
+        });
+      }
+    });
+
     const elements = $$('[data-animate]');
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, idx) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('animated');
-          }, idx * 80);
+          entry.target.classList.add('animated');
           observer.unobserve(entry.target);
         }
       });
     }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -60px 0px',
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px',
     });
 
-    elements.forEach(el => observer.observe(el));
+    elements.forEach(el => {
+      // If already in viewport on load, animate immediately
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('animated');
+      } else {
+        observer.observe(el);
+      }
+    });
   }
+
 
   // =============================================
   // COUNTER ANIMATION
@@ -454,14 +529,13 @@
         if (entry.isIntersecting) {
           const el = entry.target;
           const target = parseFloat(el.dataset.count);
-          const duration = 2000;
+          const duration = 1800;
           const start = performance.now();
           const isDecimal = target % 1 !== 0;
 
           function update(now) {
             const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
-            // Ease out quart
             const eased = 1 - Math.pow(1 - progress, 4);
             const current = eased * target;
 
@@ -475,7 +549,7 @@
           observer.unobserve(el);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.15 });
 
     counters.forEach(el => observer.observe(el));
   }
@@ -493,11 +567,11 @@
           const level = bar.dataset.level;
           setTimeout(() => {
             bar.style.width = level + '%';
-          }, 200);
+          }, 150);
           observer.unobserve(bar);
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.15 });
 
     bars.forEach(bar => observer.observe(bar));
   }
@@ -955,23 +1029,7 @@
       ctx.fillStyle = grad2;
       ctx.fillRect(0, 0, width, height);
 
-      // 2. Draw Dynamic Flow Wave (Reacts directly to scrolling)
-      ctx.beginPath();
-      const waveY = height * 0.82 + Math.sin(time * 1.2) * 30;
-      ctx.moveTo(0, height);
-      for (let x = 0; x <= width; x += 30) {
-        const y = waveY + Math.sin(x * 0.005 + time * 1.5 + scrollRatio * Math.PI * 4) * 40
-          + Math.cos(x * 0.008 - time * 0.8) * 20
-          - (scrollVelocity * 1.2);
-        ctx.lineTo(x, y);
-      }
-      ctx.lineTo(width, height);
-      ctx.closePath();
-      const waveGrad = ctx.createLinearGradient(0, height - 200, width, height);
-      waveGrad.addColorStop(0, `hsla(${baseHue}, 80%, 60%, 0.06)`);
-      waveGrad.addColorStop(1, `hsla(${secondaryHue}, 80%, 50%, 0.02)`);
-      ctx.fillStyle = waveGrad;
-      ctx.fill();
+      // Wave animation removed as requested
 
       // 3. Draw Nodes & Moving Energy Grid (Loop + Scroll Motion)
       nodes.forEach((node, i) => {
@@ -1103,6 +1161,252 @@
   }
 
   // =============================================
+  // FLOATING TEXT DETAILS MODAL
+  // =============================================
+  const floatingTextData = {
+    'best-outgoing': {
+      tag: 'Academic Honor & Leadership',
+      title: 'Best Outgoing Student — CSE Department',
+      icon: 'trophy',
+      description: 'Awarded the prestigious Best Outgoing Student honor for the Computer Science & Engineering Department at Adithya Institute of Technology. Recognized for academic excellence (CGPA 8.15/10), outstanding technical leadership, multi-year student presidency, and driving AI/ML innovation across campus.',
+      highlights: [
+        'Top Academic Rank in CSE Department with 8.15 CGPA.',
+        'Served as CSE Department Student President (2024–2025).',
+        'Led national-level hackathons and technical symposium workshops.',
+        'Mentored 50+ junior students in Python programming & Machine Learning.'
+      ],
+      pills: ['Academic Excellence', 'Leadership', 'CSE Department Award', 'Hackathon Mentor', 'CGPA 8.15'],
+      actionText: 'View Education Details',
+      actionHref: '#education'
+    },
+    'python': {
+      tag: 'Core Programming Language',
+      title: 'Python Engineering & AI Automation',
+      icon: 'code-2',
+      description: 'Python is my core programming language used across Machine Learning, Data Analytics, Edge AI, Backend API development, and process automation. I leverage Python to convert raw data into intelligent autonomous solutions.',
+      highlights: [
+        'Advanced ML & DL model development with PyTorch, Scikit-learn, and TensorFlow.',
+        'Efficient data processing using Pandas, NumPy, and Polars.',
+        'Computer Vision & Image Processing pipeline integration using OpenCV.',
+        'Automated backend workflows with FastAPI, Flask, and AsyncIO.'
+      ],
+      pills: ['PyTorch', 'Pandas', 'NumPy', 'Scikit-learn', 'OpenCV', 'FastAPI', 'Automation'],
+      actionText: 'View Python Projects',
+      actionHref: '#projects'
+    },
+    'ml': {
+      tag: 'AI & Predictive Analytics',
+      title: 'Machine Learning & Deep Learning',
+      icon: 'cpu',
+      description: 'Designing end-to-end Machine Learning systems from data preprocessing and feature engineering to model deployment and real-time inference. Specializing in predictive analytics, anomaly detection, and natural language processing.',
+      highlights: [
+        'Trained models using Random Forest, XGBoost, LightGBM, and Neural Networks.',
+        'Experience in predictive health diagnosis (Brain Tumor & Diabetes prediction).',
+        'Implemented hyperparameter tuning, model evaluation, and cross-validation metrics.',
+        'Exported models to ONNX & TFLite formats for edge device execution.'
+      ],
+      pills: ['Supervised Learning', 'Deep Learning', 'Neural Networks', 'XGBoost', 'Feature Engineering', 'Model Inference'],
+      actionText: 'View ML Experience',
+      actionHref: '#experience'
+    },
+    'power-bi': {
+      tag: 'Data Visualization & BI',
+      title: 'Power BI & Business Intelligence',
+      icon: 'bar-chart-3',
+      description: 'Transforming complex data pipelines into intuitive, dynamic executive dashboards. Crafting custom DAX queries, data models, and interactive visualizations that drive data-backed decision-making.',
+      highlights: [
+        'Designed interactive sales analytics and business performance dashboards.',
+        'Advanced DAX calculations, calculated measures, and dynamic time-intelligence.',
+        'Data modeling with Star and Snowflake schemas for multi-table datasets.',
+        'Automated ETL pipelines connecting Power BI with SQL databases.'
+      ],
+      pills: ['DAX Queries', 'Executive Dashboards', 'Data Modeling', 'Power Query', 'KPI Reporting'],
+      actionText: 'Explore Analytics Skills',
+      actionHref: '#skills'
+    },
+    'sql': {
+      tag: 'Database & Data Architecture',
+      title: 'SQL & Database Architecture',
+      icon: 'database',
+      description: 'Structuring relational database schemas and writing high-performance SQL queries for transactional databases and data warehousing solutions. Ensuring data integrity and fast access speeds.',
+      highlights: [
+        'Writing optimized SQL queries with complex joins, window functions, and CTEs.',
+        'Database design, indexing strategies, and query performance tuning.',
+        'Integration with cloud databases including PostgreSQL, Supabase, and MySQL.',
+        'Building relational data pipelines for web applications and AI APIs.'
+      ],
+      pills: ['PostgreSQL', 'Supabase', 'MySQL', 'Complex Joins', 'Window Functions', 'Query Optimization'],
+      actionText: 'View Tech Stack',
+      actionHref: '#skills'
+    },
+    'iot': {
+      tag: 'Edge Computing & Hardware',
+      title: 'IoT & Smart Embedded Systems',
+      icon: 'radio',
+      description: 'Connecting physical sensors with cloud infrastructure and AI models. Building smart embedded IoT projects for environmental monitoring, smart automation, and real-time telemetry analytics.',
+      highlights: [
+        'Developed Smart Dustbin with IoT Real-Time Alert System.',
+        'Sensor data transmission using MQTT, HTTP, and WebSockets protocols.',
+        'Hardware integration with ESP32, Arduino, and Raspberry Pi modules.',
+        'Edge AI processing for smart alert systems and telemetry dashboards.'
+      ],
+      pills: ['ESP32', 'Raspberry Pi', 'MQTT', 'Sensors', 'Real-Time Telemetry', 'Smart Automation'],
+      actionText: 'View IoT Projects',
+      actionHref: '#projects'
+    },
+    'ai': {
+      tag: 'Next-Gen AI & GenAI',
+      title: 'Artificial Intelligence & Agentic AI',
+      icon: 'sparkles',
+      description: 'Leveraging Generative AI, Large Language Models (LLMs), RAG architectures, and autonomous agent workflows to build intelligent conversational applications and automated research tools.',
+      highlights: [
+        'Integrated OpenAI and Google Gemini APIs into dynamic web applications.',
+        'RAG (Retrieval-Augmented Generation) pipeline setup with vector embeddings.',
+        'Autonomous agentic automation using N8N, custom tools, and Python webhooks.',
+        'Prompt engineering and intelligent conversational UI design.'
+      ],
+      pills: ['Generative AI', 'LLMs', 'Gemini API', 'RAG Pipelines', 'Agentic Workflows', 'N8N Automation'],
+      actionText: 'View AI Skills',
+      actionHref: '#skills'
+    }
+  };
+
+  function initFloatingTextModal() {
+    const modal = $('#floating-text-modal');
+    if (!modal) return;
+
+    const backdrop = $('.floating-modal-backdrop', modal);
+    const closeBtn = $('#modal-close-btn');
+    const dismissBtn = $('#modal-dismiss-btn');
+    const actionBtn = $('#modal-action-btn');
+
+    const modalIconWrap = $('#modal-icon-container');
+    const modalTag = $('#modal-tag');
+    const modalTitle = $('#modal-title');
+    const modalDescription = $('#modal-description');
+    const modalHighlights = $('#modal-highlights');
+    const modalPills = $('#modal-pills');
+
+    const openModal = (key) => {
+      const data = floatingTextData[key];
+      if (!data) return;
+
+      if (modalTag) modalTag.textContent = data.tag;
+      if (modalTitle) modalTitle.textContent = data.title;
+      if (modalDescription) modalDescription.textContent = data.description;
+
+      if (modalIconWrap) {
+        modalIconWrap.innerHTML = `<i data-lucide="${data.icon || 'sparkles'}" class="floating-modal-icon"></i>`;
+      }
+
+      if (modalHighlights) {
+        modalHighlights.innerHTML = data.highlights
+          .map(item => `<li>${item}</li>`)
+          .join('');
+      }
+
+      if (modalPills) {
+        modalPills.innerHTML = data.pills
+          .map(pill => `<span class="modal-pill">${pill}</span>`)
+          .join('');
+      }
+
+      if (actionBtn) {
+        actionBtn.href = data.actionHref || '#projects';
+        const actionSpan = $('span', actionBtn);
+        if (actionSpan) actionSpan.textContent = data.actionText || 'View Related Work';
+      }
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    // Attach click and keyboard listeners to floating elements
+    const floatingElements = $$('[data-floating-key]');
+    floatingElements.forEach(el => {
+      const key = el.getAttribute('data-floating-key');
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(key);
+      });
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(key);
+        }
+      });
+    });
+
+    // Close triggers
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (dismissBtn) dismissBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+    if (actionBtn) actionBtn.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
+  // =============================================
+  // EXPERIENCE CINEMATIC TIMELINE
+  // =============================================
+  function initExperienceAutoScroll() {
+    const items    = $$('.exp-tl-item');
+    const spineFill = $('#exp-spine-fill');
+    const section  = $('#experience');
+
+    if (!items.length) return;
+
+    // IntersectionObserver: reveal each card as it enters viewport
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('tl-visible');
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    items.forEach(item => cardObserver.observe(item));
+
+    // Scroll-driven spine fill
+    if (spineFill && section) {
+      let isTicking = false;
+      function updateSpine() {
+        if (isTicking) return;
+        isTicking = true;
+        requestAnimationFrame(() => {
+          const rect = section.getBoundingClientRect();
+          const vh = window.innerHeight;
+          // progress = how far through the section we've scrolled (0-1)
+          const progress = Math.max(0, Math.min(1,
+            (vh - rect.top) / (rect.height + vh * 0.3)
+          ));
+          spineFill.style.height = (progress * 100) + '%';
+          isTicking = false;
+        });
+      }
+      window.addEventListener('scroll', updateSpine, { passive: true });
+      updateSpine();
+    }
+  }
+
+
+  // =============================================
   // INIT ALL
   // =============================================
   function init() {
@@ -1129,6 +1433,9 @@
     initHeroParticles();
     initCardTilt();
     initImageClickReveal();
+    initFloatingTextModal();
+    initExperienceAutoScroll();
+    initScrollAnimations();
   }
 
   // Start
@@ -1138,3 +1445,4 @@
     init();
   }
 })();
+

@@ -64,36 +64,62 @@
   <!-- Scroll Progress -->
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
 
-  <!-- Navigation -->
-  <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo" aria-label="Home">
-        <span class="logo-bracket">&lt;</span>PC<span class="logo-bracket">/&gt;</span>
-      </a>
-      <div class="nav-links" id="nav-links">
-        <a href="#about" class="nav-link" data-nav>About</a>
-        <a href="#skills" class="nav-link" data-nav>Skills</a>
-        <a href="#experience" class="nav-link" data-nav>Experience</a>
-        <a href="#projects" class="nav-link" data-nav>Projects</a>
-        <a href="#certifications" class="nav-link" data-nav>Certifications</a>
-        <a href="#education" class="nav-link" data-nav>Education</a>
-        <a href="#contact" class="nav-link" data-nav>Contact</a>
+  <!-- Navigation Header -->
+  <header id="header" class="floating-header">
+    <nav id="navbar" class="navbar floating-nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-container">
+        <!-- Modern Brand Logo -->
+        <a href="#hero" class="nav-logo" aria-label="Home">
+          <div class="logo-icon-box">
+            <i data-lucide="cpu" class="logo-icon"></i>
+          </div>
+          <span class="logo-text-wrap">
+            <span class="logo-brand">POOVARAGAVAN <span class="logo-dot">.AI</span></span>
+            <span class="logo-tag">AI & ML Engineer</span>
+          </span>
+        </a>
+
+        <!-- Modern Nav Links -->
+        <div class="nav-links" id="nav-links">
+          <a href="#hero" class="nav-link active" data-nav><i data-lucide="home"></i><span>Home</span></a>
+          <a href="#about" class="nav-link" data-nav><i data-lucide="user"></i><span>About</span></a>
+          <a href="#skills" class="nav-link" data-nav><i data-lucide="zap"></i><span>Skills</span></a>
+          <a href="#experience" class="nav-link" data-nav><i data-lucide="briefcase"></i><span>Experience</span></a>
+          <a href="#projects" class="nav-link" data-nav><i data-lucide="folder-code"></i><span>Projects</span></a>
+          <a href="#certifications" class="nav-link" data-nav><i data-lucide="award"></i><span>Certifications</span></a>
+          <a href="#education" class="nav-link" data-nav><i data-lucide="graduation-cap"></i><span>Education</span></a>
+          <a href="#contact" class="nav-link" data-nav><i data-lucide="mail"></i><span>Contact</span></a>
+        </div>
+
+        <!-- Action Items & Status -->
+        <div class="nav-actions">
+          <div class="nav-status-badge" title="Open to opportunities">
+            <span class="status-dot-pulse"></span>
+            <span class="status-text">Available</span>
+          </div>
+
+          <a href="#contact" class="nav-cta-btn">
+            <span>Hire Me</span>
+            <i data-lucide="sparkles"></i>
+          </a>
+
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <i data-lucide="moon" class="theme-icon-dark"></i>
+            <i data-lucide="sun" class="theme-icon-light"></i>
+          </button>
+
+          <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
       </div>
-      <div class="nav-actions">
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-          <i data-lucide="moon" class="theme-icon-dark"></i>
-          <i data-lucide="sun" class="theme-icon-light"></i>
-        </button>
-        <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <!-- Mobile Navigation Overlay -->
   <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
     <div class="mobile-nav-links">
+      <a href="#hero" class="mobile-nav-link" data-mobile-nav>Home</a>
       <a href="#about" class="mobile-nav-link" data-mobile-nav>About</a>
       <a href="#skills" class="mobile-nav-link" data-mobile-nav>Skills</a>
       <a href="#experience" class="mobile-nav-link" data-mobile-nav>Experience</a>
@@ -121,9 +147,10 @@
       <div class="hero-container">
         <!-- Left Side -->
         <div class="hero-content" data-animate="fade-right">
-          <div class="hero-badge hero-badge-gold">
+          <div class="hero-badge hero-badge-gold interactive-floating-badge" data-floating-key="best-outgoing" role="button" tabindex="0" title="Click to view details" aria-label="View details for Best Outgoing Student badge">
             <i data-lucide="trophy" class="badge-icon-gold"></i>
             <span>Best Outgoing Student — CSE Department</span>
+            <span class="click-hint-pill"><i data-lucide="sparkles"></i> Click details</span>
           </div>
 
           <h1 class="hero-title">
@@ -197,43 +224,108 @@
                 <div class="profile-status-ring"></div>
               </div>
 
-              <!-- Orbiting Tech Icons -->
+              <!-- Floating Tech Capsule Cards (Matching Reference UI Design) -->
               <div class="orbit-icons">
-                <div class="orbit-icon orbit-icon-1" data-speed="1.5">
-                  <div class="orbit-icon-inner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <!-- Python -->
+                <div class="orbit-card orbit-card-1" data-floating-key="python" role="button" tabindex="0" title="Click for Python details" aria-label="View details for Python">
+                  <div class="orbit-card-pill">
+                    <div class="orbit-card-icon icon-python">
+                      <i data-lucide="code-2"></i>
+                    </div>
+                    <span class="orbit-card-title">PYTHON</span>
                   </div>
-                  <span class="orbit-icon-label">Python</span>
+                  <div class="orbit-card-dropdown">
+                    <ul>
+                      <li>PyTorch & Scikit-learn</li>
+                      <li>Pandas & NumPy</li>
+                      <li>FastAPI Automation</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="orbit-icon orbit-icon-2" data-speed="2">
-                  <div class="orbit-icon-inner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+
+                <!-- ML -->
+                <div class="orbit-card orbit-card-2" data-floating-key="ml" role="button" tabindex="0" title="Click for Machine Learning details" aria-label="View details for Machine Learning">
+                  <div class="orbit-card-pill">
+                    <div class="orbit-card-icon icon-ml">
+                      <i data-lucide="cpu"></i>
+                    </div>
+                    <span class="orbit-card-title">MACHINE LEARNING</span>
                   </div>
-                  <span class="orbit-icon-label">ML</span>
+                  <div class="orbit-card-dropdown">
+                    <ul>
+                      <li>Predictive Models</li>
+                      <li>Neural Networks</li>
+                      <li>XGBoost & Feature Eng.</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="orbit-icon orbit-icon-3" data-speed="1.8">
-                  <div class="orbit-icon-inner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+
+                <!-- Power BI -->
+                <div class="orbit-card orbit-card-3" data-floating-key="power-bi" role="button" tabindex="0" title="Click for Power BI details" aria-label="View details for Power BI">
+                  <div class="orbit-card-pill">
+                    <div class="orbit-card-icon icon-pbi">
+                      <i data-lucide="bar-chart-3"></i>
+                    </div>
+                    <span class="orbit-card-title">POWER BI</span>
                   </div>
-                  <span class="orbit-icon-label">Power BI</span>
+                  <div class="orbit-card-dropdown">
+                    <ul>
+                      <li>DAX Calculations</li>
+                      <li>Executive Dashboards</li>
+                      <li>Data Modeling</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="orbit-icon orbit-icon-4" data-speed="2.2">
-                  <div class="orbit-icon-inner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="19" cy="17" r="3"/></svg>
+
+                <!-- SQL -->
+                <div class="orbit-card orbit-card-4" data-floating-key="sql" role="button" tabindex="0" title="Click for SQL details" aria-label="View details for SQL">
+                  <div class="orbit-card-pill">
+                    <div class="orbit-card-icon icon-sql">
+                      <i data-lucide="database"></i>
+                    </div>
+                    <span class="orbit-card-title">SQL ARCHITECTURE</span>
                   </div>
-                  <span class="orbit-icon-label">SQL</span>
+                  <div class="orbit-card-dropdown">
+                    <ul>
+                      <li>Complex Joins & Windowing</li>
+                      <li>PostgreSQL & Supabase</li>
+                      <li>Query Optimization</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="orbit-icon orbit-icon-5" data-speed="1.6">
-                  <div class="orbit-icon-inner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg>
+
+                <!-- IoT -->
+                <div class="orbit-card orbit-card-5" data-floating-key="iot" role="button" tabindex="0" title="Click for IoT details" aria-label="View details for IoT">
+                  <div class="orbit-card-pill">
+                    <div class="orbit-card-icon icon-iot">
+                      <i data-lucide="radio"></i>
+                    </div>
+                    <span class="orbit-card-title">IOT & EDGE AI</span>
                   </div>
-                  <span class="orbit-icon-label">IoT</span>
+                  <div class="orbit-card-dropdown">
+                    <ul>
+                      <li>ESP32 & Raspberry Pi</li>
+                      <li>MQTT & Telemetry</li>
+                      <li>Smart Alert Systems</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="orbit-icon orbit-icon-6" data-speed="2.5">
-                  <div class="orbit-icon-inner">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 3 2 6h4c0-3 2-4 2-6a4 4 0 0 0-4-4zM10 18h4M11 22h2"/></svg>
+
+                <!-- AI -->
+                <div class="orbit-card orbit-card-6" data-floating-key="ai" role="button" tabindex="0" title="Click for AI details" aria-label="View details for AI">
+                  <div class="orbit-card-pill">
+                    <div class="orbit-card-icon icon-ai">
+                      <i data-lucide="sparkles"></i>
+                    </div>
+                    <span class="orbit-card-title">AI & GENAI</span>
                   </div>
-                  <span class="orbit-icon-label">AI</span>
+                  <div class="orbit-card-dropdown">
+                    <ul>
+                      <li>LLMs & Gemini APIs</li>
+                      <li>RAG Vector Pipelines</li>
+                      <li>N8N Agent Workflows</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -473,126 +565,133 @@
       <div class="container">
         <div class="section-header" data-animate="fade-up">
           <span class="section-tag"><i data-lucide="briefcase" class="section-tag-icon"></i> Experience</span>
-          <h2 class="section-title">Professional <br><span class="gradient-text">Journey & Impact</span></h2>
+          <h2 class="section-title">Professional <br><span class="gradient-text">Journey &amp; Impact</span></h2>
         </div>
 
-        <div class="timeline" data-animate="fade-up">
-          <div class="timeline-line"></div>
+        <!-- Cinematic Timeline -->
+        <div class="exp-timeline-wrap" data-animate="fade-up">
 
-          <!-- Experience: TecheronNexus Startup -->
-          <div class="timeline-item" data-animate="fade-right">
-            <div class="timeline-dot">
-              <div class="timeline-dot-inner"></div>
+          <!-- Glowing vertical spine -->
+          <div class="exp-spine">
+            <div class="exp-spine-fill" id="exp-spine-fill"></div>
+          </div>
+
+          <!-- Card 0: TecheronNexus -->
+          <div class="exp-tl-item" data-tl-index="0">
+            <div class="exp-tl-node">
+              <div class="exp-tl-node-ring"></div>
+              <div class="exp-tl-node-dot"><i data-lucide="rocket"></i></div>
             </div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-header">
-                <span class="timeline-date">1 Month</span>
-                <span class="timeline-badge">Startup</span>
-              </div>
-              <h3 class="timeline-title">Junior Software Developer &amp; Designing Trainee</h3>
-              <h4 class="timeline-company">TecheronNexus Startup</h4>
-              <ul class="timeline-details">
-                <li>Worked as a Junior Software Developer and Designing Trainee at TecheronNexus Startup for 1 month.</li>
-                <li>Contributed to software development tasks using Python and participated in UI/UX design work for startup products.</li>
+            <div class="exp-tl-card glass-card" data-tl-side="right">
+              <div class="exp-tl-card-glow"></div>
+              <div class="exp-tl-badge">Startup</div>
+              <div class="exp-tl-date"><i data-lucide="calendar"></i> 1 Month</div>
+              <h3 class="exp-tl-title">Junior Software Developer &amp; Designing Trainee</h3>
+              <h4 class="exp-tl-company">TecheronNexus Startup</h4>
+              <ul class="exp-tl-details">
+                <li>Contributed to software development tasks using Python for startup products.</li>
+                <li>Participated in UI/UX design work, from wireframes to final visual assets.</li>
               </ul>
-              <div class="timeline-tags">
-                <span>Software Developer</span><span>Python</span><span>UI/UX Design</span><span>Startup</span>
+              <div class="exp-tl-tags">
+                <span>Python</span><span>UI/UX Design</span><span>Startup</span>
               </div>
             </div>
           </div>
 
-          <!-- Internship 1 -->
-          <div class="timeline-item" data-animate="fade-right">
-            <div class="timeline-dot">
-              <div class="timeline-dot-inner"></div>
+          <!-- Card 1: Pantech eLearning -->
+          <div class="exp-tl-item" data-tl-index="1">
+            <div class="exp-tl-node">
+              <div class="exp-tl-node-ring"></div>
+              <div class="exp-tl-node-dot"><i data-lucide="cpu"></i></div>
             </div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-header">
-                <span class="timeline-date">01/06/2025 — 30/06/2025</span>
-                <span class="timeline-badge">Certified</span>
-              </div>
-              <h3 class="timeline-title">Machine Learning Intern</h3>
-              <h4 class="timeline-company">Pantech eLearning Pvt. Ltd</h4>
-              <ul class="timeline-details">
-                <li>Successfully completed a certified one-month internship in Machine Learning.</li>
-                <li>Gained hands-on experience in supervised and unsupervised learning algorithms, model development, and evaluation using Python and real-world datasets.</li>
-                <li><strong>Credential:</strong> Certified Professional in Machine Learning – Pantech eLearning Pvt. Ltd.</li>
+            <div class="exp-tl-card glass-card" data-tl-side="left">
+              <div class="exp-tl-card-glow"></div>
+              <div class="exp-tl-badge exp-tl-badge-green">Certified</div>
+              <div class="exp-tl-date"><i data-lucide="calendar"></i> Jun 2025 — Jul 2025</div>
+              <h3 class="exp-tl-title">Machine Learning Intern</h3>
+              <h4 class="exp-tl-company">Pantech eLearning Pvt. Ltd</h4>
+              <ul class="exp-tl-details">
+                <li>Completed a certified one-month internship in Machine Learning.</li>
+                <li>Worked on supervised &amp; unsupervised learning, model development and evaluation.</li>
+                <li><strong>Credential:</strong> Certified Professional in Machine Learning.</li>
               </ul>
-              <div class="timeline-tags">
-                <span>Python</span><span>Supervised Learning</span><span>Unsupervised Learning</span><span>Scikit-learn</span>
+              <div class="exp-tl-tags">
+                <span>Python</span><span>Scikit-learn</span><span>Supervised Learning</span>
               </div>
             </div>
           </div>
 
-          <!-- Internship 2 -->
-          <div class="timeline-item" data-animate="fade-left">
-            <div class="timeline-dot">
-              <div class="timeline-dot-inner"></div>
+          <!-- Card 2: OXI.AI -->
+          <div class="exp-tl-item" data-tl-index="2">
+            <div class="exp-tl-node">
+              <div class="exp-tl-node-ring"></div>
+              <div class="exp-tl-node-dot"><i data-lucide="bar-chart-2"></i></div>
             </div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-header">
-                <span class="timeline-date">09/06/2025 — 12/07/2025</span>
-                <span class="timeline-badge">Certified</span>
-              </div>
-              <h3 class="timeline-title">Data Analyst Intern</h3>
-              <h4 class="timeline-company">OXI.AI</h4>
-              <ul class="timeline-details">
-                <li>Successfully completed a certified one-month internship in Data Analysis.</li>
-                <li>Gained hands-on experience in data cleaning, pre-processing, visualization, and statistical analysis using Python, SQL, and real-world datasets.</li>
+            <div class="exp-tl-card glass-card" data-tl-side="right">
+              <div class="exp-tl-card-glow"></div>
+              <div class="exp-tl-badge exp-tl-badge-cyan">Certified</div>
+              <div class="exp-tl-date"><i data-lucide="calendar"></i> Jun 2025 — Jul 2025</div>
+              <h3 class="exp-tl-title">Data Analyst Intern</h3>
+              <h4 class="exp-tl-company">OXI.AI</h4>
+              <ul class="exp-tl-details">
+                <li>Completed a certified internship in Data Analysis with real-world datasets.</li>
+                <li>Performed data cleaning, EDA, visualization &amp; statistical analysis.</li>
                 <li><strong>Credential:</strong> Certified Data Analyst – OXI.AI</li>
               </ul>
-              <div class="timeline-tags">
-                <span>Python</span><span>SQL</span><span>Data Cleaning</span><span>EDA</span><span>Visualization</span>
+              <div class="exp-tl-tags">
+                <span>Python</span><span>SQL</span><span>EDA</span><span>Visualization</span>
               </div>
             </div>
           </div>
 
-          <!-- Internship 3 -->
-          <div class="timeline-item" data-animate="fade-right">
-            <div class="timeline-dot">
-              <div class="timeline-dot-inner"></div>
+          <!-- Card 3: Prodigy InfoTech -->
+          <div class="exp-tl-item" data-tl-index="3">
+            <div class="exp-tl-node">
+              <div class="exp-tl-node-ring"></div>
+              <div class="exp-tl-node-dot"><i data-lucide="brain"></i></div>
             </div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-header">
-                <span class="timeline-date">15/08/2024 — 15/09/2024</span>
-                <span class="timeline-badge">Virtual</span>
-              </div>
-              <h3 class="timeline-title">Machine Learning Intern</h3>
-              <h4 class="timeline-company">Prodigy InfoTech</h4>
-              <ul class="timeline-details">
-                <li>Built predictive machine learning models and conducted exploratory data analysis on industrial benchmark datasets.</li>
-                <li>Applied feature engineering, model evaluation, and regression/classification techniques.</li>
+            <div class="exp-tl-card glass-card" data-tl-side="left">
+              <div class="exp-tl-card-glow"></div>
+              <div class="exp-tl-badge exp-tl-badge-violet">Virtual</div>
+              <div class="exp-tl-date"><i data-lucide="calendar"></i> Aug 2024 — Sep 2024</div>
+              <h3 class="exp-tl-title">Machine Learning Intern</h3>
+              <h4 class="exp-tl-company">Prodigy InfoTech</h4>
+              <ul class="exp-tl-details">
+                <li>Built predictive ML models &amp; conducted EDA on industrial benchmark datasets.</li>
+                <li>Applied feature engineering, cross-validation &amp; regression/classification methods.</li>
               </ul>
-              <div class="timeline-tags">
-                <span>Machine Learning</span><span>Pandas</span><span>NumPy</span><span>Predictive Modeling</span>
+              <div class="exp-tl-tags">
+                <span>Machine Learning</span><span>Pandas</span><span>NumPy</span>
               </div>
             </div>
           </div>
 
-          <!-- Internship 4 -->
-          <div class="timeline-item" data-animate="fade-left">
-            <div class="timeline-dot">
-              <div class="timeline-dot-inner"></div>
+          <!-- Card 4: Skill Upgrade -->
+          <div class="exp-tl-item" data-tl-index="4">
+            <div class="exp-tl-node">
+              <div class="exp-tl-node-ring"></div>
+              <div class="exp-tl-node-dot"><i data-lucide="sparkles"></i></div>
             </div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-header">
-                <span class="timeline-date">01/08/2024 — 30/08/2024</span>
-                <span class="timeline-badge">Virtual</span>
-              </div>
-              <h3 class="timeline-title">Artificial Intelligence Intern</h3>
-              <h4 class="timeline-company">Skill Upgrade</h4>
-              <ul class="timeline-details">
-                <li>Explored artificial intelligence concepts, neural network architectures, and Python AI pipeline integration.</li>
-                <li>Implemented practical AI scripts and machine learning workflow fundamentals.</li>
+            <div class="exp-tl-card glass-card" data-tl-side="right">
+              <div class="exp-tl-card-glow"></div>
+              <div class="exp-tl-badge exp-tl-badge-orange">Virtual</div>
+              <div class="exp-tl-date"><i data-lucide="calendar"></i> Aug 2024</div>
+              <h3 class="exp-tl-title">Artificial Intelligence Intern</h3>
+              <h4 class="exp-tl-company">Skill Upgrade</h4>
+              <ul class="exp-tl-details">
+                <li>Explored AI concepts, neural network architectures &amp; Python AI pipeline integration.</li>
+                <li>Implemented AI scripts &amp; machine learning workflow fundamentals.</li>
               </ul>
-              <div class="timeline-tags">
-                <span>Artificial Intelligence</span><span>Python</span><span>Neural Networks</span><span>AI Workflows</span>
+              <div class="exp-tl-tags">
+                <span>AI</span><span>Python</span><span>Neural Networks</span>
               </div>
             </div>
           </div>
-        </div>
+
+        </div><!-- /.exp-timeline-wrap -->
       </div>
     </section>
+
 
     <!-- ===================== PROJECTS ===================== -->
     <section id="projects" class="section projects-section">
@@ -1004,6 +1103,8 @@
           </div>
         </div>
       </div>
+    </section>
+
     <!-- ===================== CO-CURRICULAR & EXTRA CURRICULAR ===================== -->
     <section id="activities" class="section activities-section">
       <div class="container">
@@ -1171,6 +1272,53 @@
     </div>
   </div>
 
+  <!-- Floating Text Detail Modal -->
+  <div id="floating-text-modal" class="floating-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="floating-modal-backdrop"></div>
+    <div class="floating-modal-card glass-card">
+      <button class="floating-modal-close" id="modal-close-btn" aria-label="Close modal">
+        <i data-lucide="x"></i>
+      </button>
+
+      <div class="floating-modal-header">
+        <div class="floating-modal-icon-wrap" id="modal-icon-container">
+          <i data-lucide="sparkles" class="floating-modal-icon"></i>
+        </div>
+        <div class="floating-modal-title-group">
+          <span class="floating-modal-tag" id="modal-tag">Technology Detail</span>
+          <h3 class="floating-modal-title" id="modal-title">Title Here</h3>
+        </div>
+      </div>
+
+      <div class="floating-modal-body">
+        <p class="floating-modal-description" id="modal-description">Description paragraph here.</p>
+
+        <div class="floating-modal-section">
+          <h4 class="floating-modal-subtitle"><i data-lucide="check-circle-2"></i> Key Capabilities & Focus</h4>
+          <ul class="floating-modal-highlights" id="modal-highlights">
+            <!-- Dynamically populated -->
+          </ul>
+        </div>
+
+        <div class="floating-modal-section">
+          <h4 class="floating-modal-subtitle"><i data-lucide="cpu"></i> Related Technologies & Tools</h4>
+          <div class="floating-modal-pills" id="modal-pills">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <div class="floating-modal-footer">
+        <a href="#projects" class="btn btn-primary btn-sm floating-modal-action" id="modal-action-btn">
+          <i data-lucide="layers"></i>
+          <span>View Related Work</span>
+        </a>
+        <button class="btn btn-outline btn-sm" id="modal-dismiss-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
+
